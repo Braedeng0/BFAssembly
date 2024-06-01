@@ -29,6 +29,8 @@ for line in code.split('\n'):
         res += bf_mul(int(split_line[1]), int(split_line[2]), int(split_line[3]))
     elif split_line[0] == 'div':
         res += bf_div(int(split_line[1]), int(split_line[2]), int(split_line[3]))
+    elif split_line[0] == 'qdiv':
+        res += bf_quick_div(int(split_line[1]), int(split_line[2]), int(split_line[3])) # Only works if quotient is integer (no remainder)
     elif split_line[0] == 'out':  # Output character from cell
         res += bf_print_chr(int(split_line[1]))
     elif split_line[0] == 'in':  # Input character to cell
@@ -40,7 +42,7 @@ for line in code.split('\n'):
     elif split_line[0] == 'sa':  # Set array of cells (startcell, endcell, pattern)
         #Repeats values until the endcell (eg. sa 5 10 1 2 will repeat 1 2 between cells 5 and 10)
         res += bf_set_array(int(split_line[1]), int(split_line[2]), [int(i) for i in split_line[3:]])
-    elif split_line[0] == 'cp':
+    elif split_line[0] == 'gt': # Greater than
         res += bf_comparison(int(split_line[1]), int(split_line[2]), int(split_line[3]))
     elif split_line[0] == 'eq':
         res += bf_equals(int(split_line[1]), int(split_line[2]), int(split_line[3]))
@@ -56,6 +58,14 @@ for line in code.split('\n'):
         res += bf_set_polynomial(int(split_line[1]), int(split_line[2]), [int(i) for i in split_line[3:]])
     elif split_line[0] == 'ip':  # Inc an array of cells based on a polynomial
         res += bf_inc_polynomial(int(split_line[1]), int(split_line[2]), [int(i) for i in split_line[3:]])
+    elif split_line[0] == 'cp':
+        res += bf_copy_cell(int(split_line[1]), int(split_line[2]))
+    elif split_line[0] == 'or':
+        res += bf_or(int(split_line[1]), int(split_line[2]), int(split_line[3]))
+    elif split_line[0] == 'and':
+        res += bf_and(int(split_line[1]), int(split_line[2]), int(split_line[3]))
+    elif split_line[0] == 'not': # Input has to be 0 or 1
+        res += bf_not(int(split_line[1]), int(split_line[2]))
 
 
     
